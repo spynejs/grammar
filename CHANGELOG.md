@@ -4,10 +4,10 @@ All notable changes to the SpyneJS Knowledge Base package. Format follows [Keep 
 
 ## [Unreleased]
 
-## [0.1.0] — PLACEHOLDER date
+## [0.1.0] — 2026-08-11
 
 Initial release.
 
-- Rendered from knowledge-stack round PLACEHOLDER (hash-pinned in `manifest.json`)
+- Rendered from knowledge-stack round v50-r10 (hash-pinned in `manifest.json`)
 - 91 operation cards, 32 feature records, mental model, task-routing trees
-- Framework compatibility: PLACEHOLDER
+- Framework compatibility: spynejs >=0.25
