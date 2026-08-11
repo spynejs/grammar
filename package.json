@@ -1,0 +1,41 @@
+{
+  "name": "@spynejs/kb",
+  "version": "0.1.0",
+  "description": "The SpyneJS Knowledge Base — served agent knowledge for building SpyneJS applications. Content-only package: operation cards, feature records, mental model, and task-routing trees, versioned with framework releases.",
+  "license": "MIT",
+  "sideEffects": false,
+  "files": [
+    "kb/",
+    "manifest.json",
+    "README.md",
+    "AGENTS.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": "./manifest.json",
+    "./manifest.json": "./manifest.json",
+    "./kb/*": "./kb/*"
+  },
+  "scripts": {
+    "verify:pack": "npm pack --dry-run"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spynejs/kb.git"
+  },
+  "homepage": "https://github.com/spynejs/kb#readme",
+  "keywords": [
+    "spynejs",
+    "knowledge-base",
+    "agent-knowledge-base",
+    "ai-agents",
+    "llm-context",
+    "frontend",
+    "framework",
+    "documentation"
+  ]
+}

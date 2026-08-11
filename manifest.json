@@ -1,0 +1,34 @@
+{
+  "$schema-note": "Programmatic front door for @spynejs/kb. Stable contract: spyne-cli and MCP consumers read this file. Fields never repurposed; additions only.",
+  "version": "0.1.0",
+  "frameworkCompat": {
+    "spynejs": "PLACEHOLDER >=x.y — ruled at ingestion; expressed here, never as a peerDependency"
+  },
+  "generatedFrom": {
+    "stackVersion": "PLACEHOLDER v50-rN — must pin a shipped, hash-verified round (RULINGS #13)",
+    "sha256": {
+      "spynejs-knowledge-stack": "PLACEHOLDER",
+      "cc-spynejs-kit": "PLACEHOLDER"
+    }
+  },
+  "entry": {
+    "agents": "AGENTS.md",
+    "spec": "kb/00-agent-spec.md",
+    "mentalModel": "kb/01-mental-model.md",
+    "trees": "kb/trees.md"
+  },
+  "files": [
+    {
+      "path": "kb/cards/PLACEHOLDER.md",
+      "kind": "card",
+      "topic": "PLACEHOLDER — derives from card title + tree grouping (mechanical, no editorial)",
+      "description": "PLACEHOLDER"
+    },
+    {
+      "path": "kb/records/PLACEHOLDER.md",
+      "kind": "record",
+      "topic": "PLACEHOLDER",
+      "description": "PLACEHOLDER"
+    }
+  ]
+}
