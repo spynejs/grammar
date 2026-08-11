@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "The SpyneJS Knowledge Base — served agent knowledge for building SpyneJS applications. Content-only package: operation cards, feature records, mental model, and task-routing trees, versioned with framework releases.",
   "license": "MIT",
+  "author": "Relevant Context, Inc.",
   "sideEffects": false,
   "files": [
     "kb/",
