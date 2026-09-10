@@ -7,14 +7,14 @@ You are working in a SpyneJS codebase. SpyneJS is a browser-platform-first front
 
 **Never author SpyneJS code from this file alone.** This file carries rules and routing — not enough to write correct code. Before writing or modifying any file:
 
-1. Identify the task's shape: `kb/trees.md` routes any task to its cards.
-2. **Read the relevant cards** (`kb/cards/<op-id>.md`) — each carries the judgment AND a worked example. The examples are house-canonical: imitate them.
-3. For whole features, find the matching record (`kb/records/<record-id>.md`) — its recognition line tells you when it applies; its composes list names every card to read.
+1. Identify the task's shape: `grammar/trees.md` routes any task to its cards.
+2. **Read the relevant cards** (`grammar/cards/<op-id>.md`) — each carries the judgment AND a worked example. The examples are house-canonical: imitate them.
+3. For whole features, find the matching record (`grammar/records/<record-id>.md`) — its recognition line tells you when it applies; its composes list names every card to read.
 4. Neighboring code in this repo that follows the cards is also precedent. Neighboring code that contradicts a card is legacy — the card wins.
 
 If no card or record fits the task, SAY SO before improvising, and propose the shape you intend. A wrong guess that looks conformant is the failure mode this file exists to prevent.
 
-For the full mental model (what kind of thing everything is), read `kb/01-mental-model.md` once per session when doing substantial work.
+For the full mental model (what kind of thing everything is), read `grammar/01-mental-model.md` once per session when doing substantial work.
 
 ## Rules of the road (ambient — always apply)
 
@@ -29,7 +29,7 @@ For the full mental model (what kind of thing everything is), read `kb/01-mental
 - Behavior methods live in traits (static by default), composed via props.traits; prefixes carry the composer (channelServerReconcile$, not reconcile$). Pure logic is ordinary native JavaScript.
 - Templates are logic-less: the data decides. {{.}} in string loops; sections wrap whole elements; presence = shape the data.
 - Routes are data: config declares the tree; links are dataset ROUTE anchors; read routeData/paths from route payloads — never parse location.pathname.
-- Canonical forms only: replay, toggleClass, arrays, {{.}}. Older aliases exist in legacy code — recognize them when reading; never write them (details: kb/cards/recognize-never-emit.md).
+- Canonical forms only: replay, toggleClass, arrays, {{.}}. Older aliases exist in legacy code — recognize them when reading; never write them (details: grammar/cards/recognize-never-emit.md).
 - Dispose the parent, the tree goes. Route-tier swaps: the parent only adds; each child removes itself on the governing event.
 - Constants live on SpyneAppProperties — never in constants files.
 
@@ -37,16 +37,16 @@ For the full mental model (what kind of thing everything is), read `kb/01-mental
 
 | Request sounds like | Read first |
 |---|---|
-| page, section, screen | kb/records/create-a-page.md |
-| header, nav, menu, drawer, breadcrumb, tabs | kb/trees.md → navigation family |
-| list + detail, product page, card grid | kb/records/master-detail.md |
-| form, validate, submit | kb/records/form-validate-submit.md |
-| modal, toast, confirm | kb/records/modal-open-close.md, kb/records/toast-notification-system.md |
-| search-as-you-type | kb/records/debounced-typeahead-search.md |
-| dark mode, settings that persist | kb/records/theme-or-mode-toggle.md, kb/records/persist-settings-via-storage-channel.md |
-| integrate <library> | kb/records/external-library-as-behavior-source.md |
-| loading states, skeletons | kb/records/skeleton-then-content.md, kb/records/global-loading-indicator.md |
-| anything else | kb/trees.md from the root |
+| page, section, screen | grammar/records/create-a-page.md |
+| header, nav, menu, drawer, breadcrumb, tabs | grammar/trees.md → navigation family |
+| list + detail, product page, card grid | grammar/records/master-detail.md |
+| form, validate, submit | grammar/records/form-validate-submit.md |
+| modal, toast, confirm | grammar/records/modal-open-close.md, grammar/records/toast-notification-system.md |
+| search-as-you-type | grammar/records/debounced-typeahead-search.md |
+| dark mode, settings that persist | grammar/records/theme-or-mode-toggle.md, grammar/records/persist-settings-via-storage-channel.md |
+| integrate <library> | grammar/records/external-library-as-behavior-source.md |
+| loading states, skeletons | grammar/records/skeleton-then-content.md, grammar/records/global-loading-indicator.md |
+| anything else | grammar/trees.md from the root |
 
 ## Output contract
 
@@ -54,7 +54,7 @@ When you complete a task, state which record and cards you applied (by ID). If n
 
 ## Package navigation (this npm package)
 
-This is `@spynejs/grammar` — the SpyneJS Generative Grammar in package form. `manifest.json` at the package root is the machine-readable index: version, `frameworkCompat`, and every file with its topic. The Grammar itself lives under `kb/` at the paths referenced above; `manifest.json → entry` is the stable way to locate the trees, cards, records, and mental model.
+This is `@spynejs/grammar` — the SpyneJS Generative Grammar in package form. `manifest.json` at the package root is the machine-readable index: version, `frameworkCompat`, and every file with its topic. The Grammar itself lives under `grammar/` at the paths referenced above; `manifest.json → entry` is the stable way to locate the trees, cards, records, and mental model.
 
 ## Version skew
 

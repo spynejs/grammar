@@ -1,6 +1,6 @@
 {
   "$schema-note": "Programmatic front door for @spynejs/grammar. Stable contract: spyne-cli and MCP consumers read this file. Fields never repurposed; additions only.",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "frameworkCompat": {
     "spynejs": ">=0.25"
   },
@@ -13,9 +13,9 @@
   },
   "entry": {
     "agents": "AGENTS.md",
-    "spec": "kb/00-agent-spec.md",
-    "mentalModel": "kb/01-mental-model.md",
-    "trees": "kb/trees.md"
+    "spec": "grammar/00-agent-spec.md",
+    "mentalModel": "grammar/01-mental-model.md",
+    "trees": "grammar/trees.md"
   },
   "counts": {
     "cards": 91,
@@ -23,757 +23,757 @@
   },
   "files": [
     {
-      "path": "kb/00-agent-spec.md",
+      "path": "grammar/00-agent-spec.md",
       "kind": "spec",
       "topic": "envelope",
       "description": "Agent envelope: how to consume the Grammar (carries the stackVersion line)."
     },
     {
-      "path": "kb/01-mental-model.md",
+      "path": "grammar/01-mental-model.md",
       "kind": "mental-model",
       "topic": "foundation",
       "description": "The SpyneJS mental model: what kind of thing everything is. Read once per session for substantial work."
     },
     {
-      "path": "kb/trees.md",
+      "path": "grammar/trees.md",
       "kind": "trees",
       "topic": "routing",
       "description": "Task-routing trees: routes any request to its governing cards and records."
     },
     {
-      "path": "kb/cards/acquire-and-conform.md",
+      "path": "grammar/cards/acquire-and-conform.md",
       "kind": "card",
       "topic": "behavior",
       "description": "Inbound cross-channel dependency: a Channel acquires another channel's stream via getChannel(name, payloadFilter?) in onRegistered, conforms, and re-emits under its own registered action label."
     },
     {
-      "path": "kb/cards/action-reconciliation-identity.md",
+      "path": "grammar/cards/action-reconciliation-identity.md",
       "kind": "card",
       "topic": "record-composed",
       "description": "Tag an outbound action with an identity so its returning result reconciles to the originating emission, not just to a label."
     },
     {
-      "path": "kb/cards/address-region-by-el$.md",
+      "path": "grammar/cards/address-region-by-el$.md",
       "kind": "card",
       "topic": "view",
       "description": "Address regions inside a view with el$(sel) — non-referenced, chainable, scoped to the view's root via its [vsid] attribute; accessors and methods hang off the invoked selector. Singular/plural contract: .el always resolves to a single element (first match with a debug warning when several; null when none, mirroring querySelector); .els is always an Array — empty when nothing matches, with Array methods (map, filter, find) available directly (.arr is the legacy alias — prefer els). Class methods (addClass, removeClass, setClass, toggleClass, addAnimClass) apply to every matched element and return the selector for chaining. setActiveItem(activeClass, elSel) removes the class from all matched elements and adds it to the one identity-matched element. exists is true when at least one element matches."
     },
     {
-      "path": "kb/cards/admit-by-payload-filter.md",
+      "path": "grammar/cards/admit-by-payload-filter.md",
       "kind": "card",
       "topic": "behavior",
       "description": "Narrow a listener at admission with ChannelPayloadFilter. MATCHING MODEL (source-grounded, test-anchored): criteria run against a merge barrel Object.assign({}, v, srcElement, event, payload) — payload spread LAST, so payload keys SHADOW envelope keys; {action: X} therefore matches payload.action when the dataset carries one, else the envelope action. FAIL-CLOSED: every declared criterion must pass; unknown keys are criteria and block. Forms: strings for action/selector (selector string or array, against srcElement); filter METHODS: any criterion's value may be a boolean-returning method receiving the value at its key — tier keys (payload/srcElement/event) receive that tier's object (compound conditions live there); bare keys receive the flattened value. String/boolean/number values compare by equality; array/object values are invalid (warn + always-false). GUIDANCE: payload matching uses a payload predicate — the string-action form is envelope matching that payload data can shadow; reliable envelope-action narrowing lives in the addActionListeners label. Debugging: { debugLabel: 'x' } logs every matching attempt with per-criterion pass/fail."
     },
     {
-      "path": "kb/cards/adopt-existing-element.md",
+      "path": "grammar/cards/adopt-existing-element.md",
       "kind": "card",
       "topic": "view",
       "description": "**GATE:** Only when substantial DOM pre-exists and lazy behavior attachment beats re-rendering; adoption is ownership transfer."
     },
     {
-      "path": "kb/cards/assign-view-lifecycle-tier.md",
+      "path": "grammar/cards/assign-view-lifecycle-tier.md",
       "kind": "card",
       "topic": "view",
       "description": "The first classification of any view region, before archetype or record: WHO GOVERNS ITS EXISTENCE? Three tiers: PERSISTENT — app-governed; appended in AppContainer before Stage (header, footer, drawer); never disposed; owns its own show/hide behavior capture. PAGE — route-governed; renders/disposes or shows/hides on route location (the tier fixes the governor; dispose-vs-hide remains the per-view mechanism choice). PAGEITEM — parent-governed; existence rides the parent's disposal cascade, never its own route subscription. Event-driven transients (modal, toast) are NOT a fourth tier — RULED: persistent host + self-removing children. A dedicated container (ModalContainer, ToastContainer) is persistent-tier, scaffold-instantiated; transients are its parent-governed children holding SELF-TERMINATION privilege (own timeout/close action initiates early dispose) while the host's cascade bounds their existence."
     },
     {
-      "path": "kb/cards/attr-prefix-for-attribute-placeholders.md",
+      "path": "grammar/cards/attr-prefix-for-attribute-placeholders.md",
       "kind": "card",
       "topic": "scaffold",
       "description": "In app-model / template data, any key whose value populates an ELEMENT ATTRIBUTE carries the attr prefix (attrImageSrc, attrCtaHref, attrRequired, attrMapSrc); text-content keys do not (headline, ctaText). SCOPE: the prefix is REQUIRED only when a ViewStream template is defined as data passing through the CMS; elsewhere it is optional. The prefix is a machine-facing contract: the CMS ignores attr-prefixed placeholders, so attribute positions are never converted into CMS-editable items (which breaks the HTML)."
     },
     {
-      "path": "kb/cards/author-app-model-node.md",
+      "path": "grammar/cards/author-app-model-node.md",
       "kind": "card",
       "topic": "scaffold",
       "description": "Adding a page or subpage means authoring a NODE in the app model: an entry in the correct subpages array (or pages, at root) whose route-identity keys match THAT BRANCH'S route-config params, validated against app-model.schema.json. Content rides the node (hero, pageItems, card presentation); routing, nav, breadcrumbs, and page swapping all derive."
     },
     {
-      "path": "kb/cards/author-dom-with-declared-roles.md",
+      "path": "grammar/cards/author-dom-with-declared-roles.md",
       "kind": "card",
       "topic": "view",
       "description": "Author markup so its roles are explicit and load-bearing: selectors (broadcastEvents pairs, el$ targets), dataset attributes (payload data, route links), semantic elements, and view boundaries are designed carriers of meaning."
     },
     {
-      "path": "kb/cards/author-in-correct-register.md",
+      "path": "grammar/cards/author-in-correct-register.md",
       "kind": "card",
       "topic": "logic",
       "description": "While authoring, place each piece of code in its register deliberately: structural work (wiring, instances, rendering/nesting, channel parsing/combining, emission timing) on the structural side; self-contained computation (formatting, shaping, validation) as pure prior inside trait methods."
     },
     {
-      "path": "kb/cards/author-navigation-as-dataset-links.md",
+      "path": "grammar/cards/author-navigation-as-dataset-links.md",
       "kind": "card",
       "topic": "behavior",
       "description": "Navigation links are DOM-declared: an element with data-channel=\"ROUTE\" plus a dataset attribute matching a routeName key (e.g. data-page-id=\"page-1\"). The Route Channel captures the click, updates the URL (slash/query/hash per config), and emits routeData."
     },
     {
-      "path": "kb/cards/author-pageitem-spec.md",
+      "path": "grammar/cards/author-pageitem-spec.md",
       "kind": "card",
       "topic": "view",
       "description": "Adding display content to a page means authoring a pageItem object — a serialized view spec {viewClass, props:{tagName, template, styles, data}, container} — not writing a module. viewClass resolves via lookup table with ViewStream as default; named classes (ContactUsView) are the sparse exceptions. container.isEnabled:false renders without the wrapper."
     },
     {
-      "path": "kb/cards/author-template-bound-surface.md",
+      "path": "grammar/cards/author-template-bound-surface.md",
       "kind": "card",
       "topic": "view",
       "description": "Design a template's bound (mustache) fields as its structural contract; the surrounding markup is ordinary HTML."
     },
     {
-      "path": "kb/cards/bare-metal-event-listener.md",
+      "path": "grammar/cards/bare-metal-event-listener.md",
       "kind": "card",
       "topic": "behavior",
       "description": "**GATE:** Only for multi-event capture within/between paint cycles where the channel round-trip cannot keep up; explicit disposal path required."
     },
     {
-      "path": "kb/cards/behavior-to-trait-not-view.md",
+      "path": "grammar/cards/behavior-to-trait-not-view.md",
       "kind": "card",
       "topic": "logic",
       "description": "The method that runs when a declared action fires is authored in a SpyneTrait, never on the view."
     },
     {
-      "path": "kb/cards/bridge-channel-output-to-transmit.md",
+      "path": "grammar/cards/bridge-channel-output-to-transmit.md",
       "kind": "card",
       "topic": "behavior",
       "description": "Route one channel's output back into a transmit using a null-appended ViewStream (appendToNull — lives in hidden #spyne-null-views, fully active on channels) that listens and does sendInfoToChannel."
     },
     {
-      "path": "kb/cards/choose-base-class.md",
+      "path": "grammar/cards/choose-base-class.md",
       "kind": "card",
       "topic": "root",
       "description": "Given a need, choose which of the six base classes it extends: ViewStream (owns a DOM region), Channel (behavior/state), SpyneTrait (reusable logic), DomElement (static fragment), ChannelFetch (external data), SpynePlugin. The first structural decision of any greenfield feature."
     },
     {
-      "path": "kb/cards/choose-derived-vs-merged-channel.md",
+      "path": "grammar/cards/choose-derived-vs-merged-channel.md",
       "kind": "card",
       "topic": "behavior",
       "description": "Pick the channel-combination form: derived (react to one channel's stream, enhance, emit own — sequential) vs mergeChannels (combine several — simultaneous) vs raw RxJS on obs$."
     },
     {
-      "path": "kb/cards/choose-merge-emission-mode.md",
+      "path": "grammar/cards/choose-merge-emission-mode.md",
       "kind": "card",
       "topic": "behavior",
       "description": "mergeChannels(channelsArr, emitOnce): each emission is a keyed object — one key per entry (string entries keyed by channel name; observables by resolved name or channel_<index>), value = that channel's full ChannelPayload (read as e['CHANNEL_X'].payload). emitOnce=true (default): emits once when all sources have emitted, then completes — a snapshot, the natural render gate. emitOnce=false: emits continuously on any source update, but only once every source has emitted at least once (combineLatest semantics). Choose by 'wait for all' vs 'track all'."
     },
     {
-      "path": "kb/cards/choose-replay-semantics.md",
+      "path": "grammar/cards/choose-replay-semantics.md",
       "kind": "card",
       "topic": "behavior",
       "description": "A Channel's replay prop (set at construction) decides Subject vs ReplaySubject — whether late subscribers receive the last cached payload. Decide per channel by whether its state is 'current value' (replay) or 'ephemeral event' (no replay)."
     },
     {
-      "path": "kb/cards/clone-frozen-payload.md",
+      "path": "grammar/cards/clone-frozen-payload.md",
       "kind": "card",
       "topic": "record-composed",
       "description": "ChannelPayloads are immutable (frozen); a subscriber needing local mutation calls payload.clone()."
     },
     {
-      "path": "kb/cards/compose-trait-for-capability.md",
+      "path": "grammar/cards/compose-trait-for-capability.md",
       "kind": "card",
       "topic": "logic",
       "description": "Add capability to a ViewStream or Channel by composing another trait, declared in props, readable in place."
     },
     {
-      "path": "kb/cards/conditional-via-object-section.md",
+      "path": "grammar/cards/conditional-via-object-section.md",
       "kind": "card",
       "topic": "view",
       "description": "Conditional rendering is an object section: {{#obj}}...{{/obj}} renders once when obj is truthy, not at all when absent — including wrapper tags. Dynamic variants (e.g. tag choice) use pre-computed flags with object sections."
     },
     {
-      "path": "kb/cards/conform-incoming-data.md",
+      "path": "grammar/cards/conform-incoming-data.md",
       "kind": "card",
       "topic": "record-composed",
       "description": "The channel's keystone act: shape incoming data + filterable properties + registered action label into the uniform ChannelPayload before re-emitting via sendChannelPayload(action, payload, srcElement?, event?)."
     },
     {
-      "path": "kb/cards/data-driven-child-composition.md",
+      "path": "grammar/cards/data-driven-child-composition.md",
       "kind": "card",
       "topic": "view",
       "description": "A view's supplied data declares whether and which children load — composition read from data at render time rather than hardcoded in onRendered. 'The data decides' promoted from template conditionals to view nesting; one class serves many configurations."
     },
     {
-      "path": "kb/cards/dataset-as-payload.md",
+      "path": "grammar/cards/dataset-as-payload.md",
       "kind": "card",
       "topic": "record-composed",
       "description": "Per-element data rides dataset attributes: a broadcast UI event's payload IS the element's dataset. Design dataset attributes as the data surface of interactive elements (and of ROUTE links). Dataset reads are LIVE, not bind-time snapshots: if a data-* value changes after broadcastEvents binding, the updated value is what rides the next payload — dataset attributes function as mutable per-element state the broadcast reflects."
     },
     {
-      "path": "kb/cards/declare-action-listeners.md",
+      "path": "grammar/cards/declare-action-listeners.md",
       "kind": "card",
       "topic": "behavior",
       "description": "A view declares which channel actions it listens for and which trait method each maps to — addActionListeners pairs [CHANNEL_ACTION, methodName, filter?] — with channels named in props.channels."
     },
     {
-      "path": "kb/cards/declare-broadcast-events.md",
+      "path": "grammar/cards/declare-broadcast-events.md",
       "kind": "card",
       "topic": "behavior",
       "description": "A view declares which of its internal elements' events broadcast — broadcastEvents returns nested selector-event pairs, captured by the UI or Route Channel (fromEvent under the hood). Binding model: selector scoped to the view root; the listener attaches to each matched element (which becomes srcElement); binding is a render-time post-onRendered binding — see dynamic-children-ingress for children rendered later."
     },
     {
-      "path": "kb/cards/decompose-region-into-viewstreams.md",
+      "path": "grammar/cards/decompose-region-into-viewstreams.md",
       "kind": "card",
       "topic": "view",
       "description": "Slice the requested UI into ViewStreams by DOM-region ownership and disposal-unit boundaries — each view owns one region rooted at a single element."
     },
     {
-      "path": "kb/cards/default-class-with-sparse-exceptions.md",
+      "path": "grammar/cards/default-class-with-sparse-exceptions.md",
       "kind": "card",
       "topic": "view",
       "description": "Dynamic view resolution (e.g. pageId → Page) uses a SPARSE lookup of ViewStream classes with a default: pageLookupTable[pageId] || PageView — one data-configured default class serves all ordinary cases; only behaviorally exceptional cases (404) earn a dedicated class. The lookup lives in a trait method (e.g. StageTraits.stage$OnRouteEvent), which destructures the payload, resolves the class, and nests via this.appendView(new PageClass({data, isDeepLink}), '.page-container'). Class references are sanctioned; instance references are not."
     },
     {
-      "path": "kb/cards/design-action-label-vocabulary.md",
+      "path": "grammar/cards/design-action-label-vocabulary.md",
       "kind": "card",
       "topic": "record-composed",
       "description": "Design a feature's action-label set deliberately: distinct labels for distinct fan-out sets; shared label + filterable payload properties for one fan-out set with variants; names domain-scoped and intent-bearing. The label set is the feature's behavioral API."
     },
     {
-      "path": "kb/cards/design-route-config-tree.md",
+      "path": "grammar/cards/design-route-config-tree.md",
       "kind": "card",
       "topic": "scaffold",
       "description": "Author the nested routePath tree in SpyneApp.init as the SPA's page topology: routeName keys, URL-segment mappings (string or array/glob), nesting mirroring the app's navigation hierarchy. Declared once, before any view exists."
     },
     {
-      "path": "kb/cards/discretize-continuous-input-at-source.md",
+      "path": "grammar/cards/discretize-continuous-input-at-source.md",
       "kind": "card",
       "topic": "behavior",
       "description": "Continuous inputs (rAF loops, orbit angles, scroll physics, sensors) never reach the channel raw. Three components at the source: SAMPLING POLICY (when to read — per frame, on interaction end, on threshold), BUCKETING (continuous value → semantic name via thresholds; pure prior), CHANGE-GATING (emit only on transitions — return null when the bucket hasn't changed). The channel carries semantic events; everything downstream stays declarative and label-narrowed."
     },
     {
-      "path": "kb/cards/dispose-as-unit.md",
+      "path": "grammar/cards/dispose-as-unit.md",
       "kind": "card",
       "topic": "record-composed",
       "description": "Design teardown around unit disposal: disposeViewStream cascades from the bottom of the nested chain — children remove and unsubscribe first, then the instance removes itself from DOM and memory."
     },
     {
-      "path": "kb/cards/dispose-by-predicate-filter.md",
+      "path": "grammar/cards/dispose-by-predicate-filter.md",
       "kind": "card",
       "topic": "behavior",
       "description": "A transient view can self-dispose when a channel condition STOPS holding: register ['ACTION','disposeViewStream', filter] where the ChannelPayloadFilter admits on the negative match (search term no longer contained in this item's name, or term emptied). Disposal as a subscription outcome; each stale item removes itself, no orchestrator diffs the set. Generalizes to THRESHOLD predicates: canonical tic-tac-toe move buttons dispose via payload:(v)=>v.moveNum <= this.props.moveNum — numeric condition, same distributed-exit architecture."
     },
     {
-      "path": "kb/cards/dispose-vs-hide.md",
+      "path": "grammar/cards/dispose-vs-hide.md",
       "kind": "card",
       "topic": "view",
       "description": "Choose structural teardown (disposeViewStream) vs visibility toggle (pure-prior CSS) by whether the behavior should stop existing. appendToNull is the third option: active behavior, no visible presence."
     },
     {
-      "path": "kb/cards/domelement-vs-viewstream.md",
+      "path": "grammar/cards/domelement-vs-viewstream.md",
       "kind": "card",
       "topic": "view",
       "description": "Use DomElement for basic HTML/text generation (same constructor interface: tagName, attributes, template, data; renders a DocumentFragment) when the fragment needs no channels, traits, or lifecycle. Use ViewStream when reactive features are needed. DEPTH CLAUSE (merged): when template markup grows deep/repeating enough to carry behavior or lifecycle of its own, that depth is the signal a region has outgrown template/DomElement rendering and earns a ViewStream."
     },
     {
-      "path": "kb/cards/dynamic-children-ingress.md",
+      "path": "grammar/cards/dynamic-children-ingress.md",
       "kind": "card",
       "topic": "view",
       "description": "broadcastEvents binds snapshot-direct: the selector is scoped to the view root, the listener attaches to each matched interactive element (which becomes the payload's srcElement), and elements rendered AFTER binding are not covered. Two sanctioned recipes for dynamic children: (1) DEFAULT — render dynamic children as nested ViewStreams, each declaring its own broadcastEvents at its own render (code closest to what it controls; binding rides the child's lifecycle); (2) ALTERNATIVE — add the event to the Window Channel and narrow with payload filters to the desired root, i.e. delegation at the framework's designed global tier rather than an ad-hoc container."
     },
     {
-      "path": "kb/cards/entity-routes-from-data.md",
+      "path": "grammar/cards/entity-routes-from-data.md",
       "kind": "card",
       "topic": "behavior",
       "description": "Routes whose identity values come from ENTITY DATA, not authored app-model nodes (heroes/{id}, invoices/{invoiceId}). ONE architecture: the domain channel is a state machine — trait methods combine CHANNEL_ROUTE (and UI/WINDOW as needed) with entity data, resolve the entity per route event, conform (labels like nameUpperCase stamped channel-side), and DELIVER IT IN THE PAGE'S BIRTH PAYLOAD. Two acquisition modes within it: (A) HELD COLLECTION — data already in channel state (seeded statically or by a prior fetch); resolution is a synchronous lookup (ToH). (B) PER-NAVIGATION ACQUISITION — the channel trait acquires on route events via ChannelFetchUtil (the channel-side fetch: channels cannot push into a ChannelFetch, so the util IS the sanctioned in-channel acquisition), composed with select-concurrency-operator, conformed and emitted on response. In both modes the page never fetches for itself. Entity collections generate their own dataset ROUTE links from entity data in template array sections."
     },
     {
-      "path": "kb/cards/error-as-conformed-payload.md",
+      "path": "grammar/cards/error-as-conformed-payload.md",
       "kind": "card",
       "topic": "record-composed",
       "description": "Fetch failures enter the channel system as conformed, flat, filterable ChannelPayloads under the derived {CHANNEL_NAME}_ERROR_EVENT action: isChannelFetchError (always true), errorType (FETCH_HTTP_ERROR | FETCH_RESPONSE_PARSE_ERROR | FETCH_UNSUPPORTED_RESPONSE_TYPE | FETCH_UNKNOWN_ERROR), message, status/statusText, url/channelName/responseType, rawBodyPreview, originalErrorMessage. The map function is never called for error payloads. Failure = rejected fetch, non-OK HTTP, unparseable body, unsupported responseType, or throwing map."
     },
     {
-      "path": "kb/cards/escape-to-raw-rxjs.md",
+      "path": "grammar/cards/escape-to-raw-rxjs.md",
       "kind": "card",
       "topic": "behavior",
       "description": "**GATE:** Only when the declared idioms cannot express the timing/combination; keep the escape inside the channel trait."
     },
     {
-      "path": "kb/cards/fetch-as-channel.md",
+      "path": "grammar/cards/fetch-as-channel.md",
       "kind": "card",
       "topic": "behavior",
       "description": "External data enters via ChannelFetch(channelName, {url, map?, responseType?, pause?, disableSanitize?, ...fetchOptions}). Every outcome is a conformed ChannelPayload: success under {CHANNEL_NAME}_RESPONSE_EVENT, failure under {CHANNEL_NAME}_ERROR_EVENT — both derived from the registered name, registered alongside the channel's actions, narrowable like any action. Responses are cached. Fetched data is always sanitized with the app posture regardless of configured mode (remote data is untrusted by definition); a trusted feed can opt out per-channel with disableSanitize."
     },
     {
-      "path": "kb/cards/fetch-conform-map.md",
+      "path": "grammar/cards/fetch-conform-map.md",
       "kind": "card",
       "topic": "behavior",
       "description": "Shape the fetch response once via the ChannelFetch map function, at the boundary, before emission. RESERVED-KEYS CLAUSE: 'payload' must not nest inside payload data (the framework warns) — under the filter merge barrel, a nested payload key shadows the filter's payload-predicate addressing ({payload: p => ...}), corrupting the form's grammar. Rename reserved server fields at the map seam (payload → result for mutation responses). Note the deliberate asymmetry: payload.action shadowing the envelope action is embraced (barrel-wins); payload.payload is warned, because it breaks the filter's own addressing rather than meaning something coherent."
     },
     {
-      "path": "kb/cards/gate-dev-tools-by-env-import.md",
+      "path": "grammar/cards/gate-dev-tools-by-env-import.md",
       "kind": "card",
       "topic": "scaffold",
       "description": "Dev-only modules (debug plugins, dev channels, test relays) load via environment-gated DYNAMIC import: if (process.env.NODE_ENV === 'development') { import('./dev-tools.js') } — a separate module the bundler code-splits, so development tooling never enters the production bundle."
     },
     {
-      "path": "kb/cards/gate-interactivity-via-class-and-filter.md",
+      "path": "grammar/cards/gate-interactivity-via-class-and-filter.md",
       "kind": "card",
       "topic": "behavior",
       "description": "State-dependent interactivity enforced at ADMISSION: a state-derived class is toggled onto eligible elements (classList.toggle('empty', <state condition>)), and the listener's ChannelPayloadFilter admits by that selector — ineligible elements' events never reach the handler. The class doubles as the readable rule surface and styling hook (tic-tac-toe: filled squares and a won board are unclickable with zero handler checks)."
     },
     {
-      "path": "kb/cards/handshake-via-temp-prop.md",
+      "path": "grammar/cards/handshake-via-temp-prop.md",
       "kind": "card",
       "topic": "scaffold",
       "description": "One-time secrets (handshake tokens, nonces, single-consumer handoffs) are stored as SpyneAppProperties temp props (isTemp=true): removed on first read, so exactly one reader can consume the value and later readers find nothing. Designed for the authenticated handshake between separate SpyneJS applications communicating over postMessage."
     },
     {
-      "path": "kb/cards/images-by-search-intent-not-url.md",
+      "path": "grammar/cards/images-by-search-intent-not-url.md",
       "kind": "card",
       "topic": "record-composed",
       "description": "Generated content never contains invented image URLs. The model authors SEARCH INTENT (imgSearchInput: descriptive query strings, location+subject clues) as a content field; a deterministic pipeline step resolves intent against the image source (Pexels/Unsplash) and writes the real attrImageSrc. Model authors intent; tools resolve resources."
     },
     {
-      "path": "kb/cards/index-js-as-structural-spine.md",
+      "path": "grammar/cards/index-js-as-structural-spine.md",
       "kind": "card",
       "topic": "scaffold",
       "description": "Author index.js as the application's structural spine: SpyneApp.init config (route tree, window events, mediaQueries, debug/strict), registerChannel calls, registerPlugin calls, root render."
     },
     {
-      "path": "kb/cards/live-mirror-via-el$.md",
+      "path": "grammar/cards/live-mirror-via-el$.md",
       "kind": "card",
       "topic": "behavior",
       "description": "Ephemeral display mirroring (an input's in-progress value reflected in a heading) is an el$ DOM mutation driven by the input broadcast — no channel state, no re-render, the value held nowhere but the input element itself. Durable propagation happens separately, on the commit action (save)."
     },
     {
-      "path": "kb/cards/match-action-labels-by-pattern.md",
+      "path": "grammar/cards/match-action-labels-by-pattern.md",
       "kind": "card",
       "topic": "behavior",
       "description": "addActionListeners is an ORDERED DISPATCH TABLE with first-match short-circuit: per payload, an EXACT action name takes precedence over patterns REGARDLESS of position (empirically confirmed: pattern declared first, exact second — exact wins every time); each payload triggers one match. Among overlapping PATTERNS, precedence is unpinned — never rely on it; the doctrine's dedup rule (payload filter on overlap) makes the question unreachable. Ordering specific-entries-first is a readability practice, not a mechanic. Short-circuit holds PER SUBSCRIPTION PATH; co-firing across paths (multiple channel subscriptions; extended-streams fallback) has been observed and is a separate phenomenon — one method per payload per subscription, not per view. Matching per entry: exact-key fast path, then the pattern as an UNANCHORED RegExp (matches anywhere — a bare prefix matches its whole family; the .* is documentary; regex-special characters in labels are live syntax). Guidance: write patterns specific enough that ordering never matters; when layering, declare specific entries BEFORE catchalls — an early broad pattern silently shadows every later specific one. DOCTRINE (three rules that make the dispatch fine print unreachable): (1) register enough actions that labels do the first-level sifting of payloads, for ViewStreams and custom channels alike; (2) match as precisely as possible — precision, not ordering, is the primary tool; (3) where two patterns could match the same action, add a payload filter as the dedup guard."
     },
     {
-      "path": "kb/cards/mint-channel-vs-ride-existing.md",
+      "path": "grammar/cards/mint-channel-vs-ride-existing.md",
       "kind": "card",
       "topic": "behavior",
       "description": "Decide whether a feature needs its own registered channel or rides an existing one with new action labels. registerChannel enforces unique names app-wide."
     },
     {
-      "path": "kb/cards/mint-child-view-by-channel-need.md",
+      "path": "grammar/cards/mint-child-view-by-channel-need.md",
       "kind": "card",
       "topic": "view",
       "description": "The granularity test for single elements and small element groups: if the parent ViewStream ALREADY listens to the behavior's channel, the parent maintains the element (broadcastEvents on the parent; multiple static interactive elements with few sync updates stay parent-maintained). A dedicated child ViewStream is warranted only when the element needs a channel the parent does not listen to (canonical hamburger: parent header doesn't listen to CHANNEL_MENU_DRAWER, so the hamburger is its own Item view). Dynamic additions always fork to dynamic-children-ingress."
     },
     {
-      "path": "kb/cards/name-route-keys-for-legibility.md",
+      "path": "grammar/cards/name-route-keys-for-legibility.md",
       "kind": "card",
       "topic": "record-composed",
       "description": "RouteName keys are BRANCH DECLARATIONS, not a global ladder: the RouteMap supports per-branch key vocabularies (depth 2 under 'profile' may be userId while depth 2 under 'products' is productId). Level 1 (pageId) is the one shared key — it selects the branch. Deeper keys should take domain nouns per branch; the canonical trio (topicId, optionId) is simply what the canonical app's branches declare. A dataset ROUTE link then self-describes (data-product-id). Depth is NEVER encoded in names: the route config declares each branch's order and every payload carries paths[] + pathInnermost."
     },
     {
-      "path": "kb/cards/name-trait-prefixes-by-composer.md",
+      "path": "grammar/cards/name-trait-prefixes-by-composer.md",
       "kind": "card",
       "topic": "logic",
       "description": "A trait's prefix carries its COMPOSER'S identity: which class family it composes into and which host specifically — channelServerReconcile$ (a channel's trait), not reconcile$; channelServerTests$, not serverTests$. File names follow (channel-server-optimistic-reconcile-traits.js). Prefixes are API surface — every method name carries them — so the prefix is where a method self-locates."
     },
     {
-      "path": "kb/cards/name-views-by-role-suffix.md",
+      "path": "grammar/cards/name-views-by-role-suffix.md",
       "kind": "card",
       "topic": "general",
       "description": "View class names declare their structural role by suffix: Container (nests others, renders/maintains no content of its own — though it may broadcast into nested children's DOM), View (maintains its own DOM unit; may also nest), Item (a single interactive element that maintains itself). Legible structure at the name level."
     },
     {
-      "path": "kb/cards/nest-view-without-handle.md",
+      "path": "grammar/cards/nest-view-without-handle.md",
       "kind": "card",
       "topic": "view",
       "description": "Rendering a child view — appendView/prependView/appendViewAfter(v, query?) in the parent's onRendered — exchanges parent/child lifecycle context via an internal observable chain, not handles."
     },
     {
-      "path": "kb/cards/no-leaked-subscription.md",
+      "path": "grammar/cards/no-leaked-subscription.md",
       "kind": "card",
       "topic": "record-composed",
       "description": "Generated code must be lifecycle-complete: no leaked subscription, orphaned DOM behavior, or unmanaged effect — a leak makes the solution malformed, not untidy."
     },
     {
-      "path": "kb/cards/null-appended-behavior-view.md",
+      "path": "grammar/cards/null-appended-behavior-view.md",
       "kind": "card",
       "topic": "view",
       "description": "A ViewStream rendered via appendToNull — functionally active (listening on channels, running methods) but visually absent — used as a behavior participant (bridge, orchestrator)."
     },
     {
-      "path": "kb/cards/onrendered-as-attach-point.md",
+      "path": "grammar/cards/onrendered-as-attach-point.md",
       "kind": "card",
       "topic": "view",
       "description": "onRendered runs immediately after the root element enters the DOM, before the next animation frame — and it is where nested child ViewStreams are added. Work triggered there routes to trait methods."
     },
     {
-      "path": "kb/cards/pause-fetch-vs-autofire.md",
+      "path": "grammar/cards/pause-fetch-vs-autofire.md",
       "kind": "card",
       "topic": "behavior",
       "description": "ChannelFetch fires on creation unless pause=true. On-demand or repeat fetching is triggered via sendInfoToChannel with the derived {CHANNEL_NAME}_REQUEST_EVENT action (the generic CHANNEL_FETCH_REQUEST_EVENT label is also registered)."
     },
     {
-      "path": "kb/cards/prototype-in-data-then-promote.md",
+      "path": "grammar/cards/prototype-in-data-then-promote.md",
       "kind": "card",
       "topic": "view",
       "description": "pageItems support a data-first lifecycle: isPrototype (true/absent) marks a fully data-defined item, iterable rapidly through the CMS copy/paste loop with AI; when the design stabilizes or behavior outgrows data, the item is promoted to a declared module (viewClass lookup) and pinned (isPrototype:false)."
     },
     {
-      "path": "kb/cards/provisional-state-with-inverse.md",
+      "path": "grammar/cards/provisional-state-with-inverse.md",
       "kind": "card",
       "topic": "record-composed",
       "description": "Apply a provisional (optimistic) state change while recording its inverse, so rollback is a structural application rather than a re-derivation."
     },
     {
-      "path": "kb/cards/query-params-as-route-state.md",
+      "path": "grammar/cards/query-params-as-route-state.md",
       "kind": "card",
       "topic": "behavior",
       "description": "Shareable, back-button-correct UI state (search terms, page numbers, filters) lives in URL query params conformed into routeData — not in channel state alone. The Route Channel's query URL support carries it; listeners react to param diffs like any route change."
     },
     {
-      "path": "kb/cards/react-to-route-diff.md",
+      "path": "grammar/cards/react-to-route-diff.md",
       "kind": "card",
       "topic": "behavior",
       "description": "_Diff keys grounded: canonical nav-breadcrumb-view-traits.js._"
     },
     {
-      "path": "kb/cards/read-route-context-from-payload.md",
+      "path": "grammar/cards/read-route-context-from-payload.md",
       "kind": "card",
       "topic": "behavior",
       "description": "Location context comes from the route payload's data — routeData keys (the branch's params), paths[] (ordered active keys), pathInnermost (deepest) — never from parsing location.pathname. Auxiliary dataset attributes on the triggering link ride routeData verbatim (eventType, eventPreventDefault, endRoute), so links can carry custom context through navigation."
     },
     {
-      "path": "kb/cards/recognize-never-emit.md",
+      "path": "grammar/cards/recognize-never-emit.md",
       "kind": "card",
       "topic": "general",
       "description": "The legacy-alias registry: forms a generating agent must RECOGNIZE when reading existing SpyneJS code and must NEVER EMIT. sendCachedPayload → replay (SCRUB ON SIGHT: never document, never emit — remove from any repo it appears in; ruled out of the public reference entirely). addChannel() → props.channels arrays (older, undocumented). ViewStream.getChannel (raw subject access) → unsanctioned; no replacement — restructure. el$.toggle → toggleClass (thin alias). {{.*}} → {{.}} (interchangeable; canonical wins). String-form props.channels / props.traits → always arrays. propFilters wrapper → bare payload keys on the filter (deprecated early API for payload-tier specs). Unmarked patterns in older source are history, not sanction."
     },
     {
-      "path": "kb/cards/recognize-own-emission.md",
+      "path": "grammar/cards/recognize-own-emission.md",
       "kind": "card",
       "topic": "behavior",
       "description": "A view that must react to its own payload returning through a channel adds an explicit identity marker/filter."
     },
     {
-      "path": "kb/cards/register-channel-action-vocabulary.md",
+      "path": "grammar/cards/register-channel-action-vocabulary.md",
       "kind": "card",
       "topic": "behavior",
       "description": "A Channel declares its accepted actions via addRegisteredActions — pure label registration plus optional [\"ACTION\", \"method\"] pairs that auto-wire incoming sendInfoToChannel calls (via onViewStreamInfo) to channel methods. This is the channel's public contract."
     },
     {
-      "path": "kb/cards/register-channel-upfront.md",
+      "path": "grammar/cards/register-channel-upfront.md",
       "kind": "card",
       "topic": "scaffold",
       "description": "Channels are persistent, idle until engaged, never deleted — registered explicitly (registerChannel, unique names enforced) at init without lifecycle anxiety."
     },
     {
-      "path": "kb/cards/render-empty-populate-on-event.md",
+      "path": "grammar/cards/render-empty-populate-on-event.md",
       "kind": "card",
       "topic": "view",
       "description": "Persistent-tier containers commonly render EMPTY and generate their content on init or sync events (breadcrumb container populating on CHANNEL_APP_INIT_EVENT): the container captures behavior and data; content arrives when the app's state does."
     },
     {
-      "path": "kb/cards/render-nav-from-config.md",
+      "path": "grammar/cards/render-nav-from-config.md",
       "kind": "card",
       "topic": "behavior",
       "description": "Application navigation can be rendered from SpyneAppProperties.getNavLinks(), which returns dynamically generated links derived from the route config."
     },
     {
-      "path": "kb/cards/retry-backoff-via-channelfetchutil.md",
+      "path": "grammar/cards/retry-backoff-via-channelfetchutil.md",
       "kind": "card",
       "topic": "behavior",
       "description": "Retry/backoff and advanced fetch stream behaviors built on ChannelFetchUtil: an observable-wrapped fetch that NEVER errors out — every failure is caught and conformed into the same flat error payload (isChannelFetchError: true) delivered through the next path, so RxJS retry/backoff operators compose without error-channel plumbing. Map applies to successes only."
     },
     {
-      "path": "kb/cards/route-as-data.md",
+      "path": "grammar/cards/route-as-data.md",
       "kind": "card",
       "topic": "behavior",
       "description": "Navigation is consumed as conformed routeData on CHANNEL_ROUTE (keys per the route config's routeName entries), narrowed by action label like any behavior."
     },
     {
-      "path": "kb/cards/route-scoped-view-state.md",
+      "path": "grammar/cards/route-scoped-view-state.md",
       "kind": "card",
       "topic": "behavior",
       "description": "The generalizable navigation-family pattern: a view parameterized by ROUTE COORDINATES from data (bcProps, navLevel — discovered from navLinks/paths, never hardcoded key names), deriving all render state purely from (route payload + own coordinates), applying via el$, and writing its navLink's route keys back into its anchor's dataset so the view's own links stay live ROUTE links as the app moves."
     },
     {
-      "path": "kb/cards/safeclone-for-proxified-data.md",
+      "path": "grammar/cards/safeclone-for-proxified-data.md",
       "kind": "card",
       "topic": "general",
       "description": "When the SpyneCMSPlugin is in play, its map method (installed as a ChannelFetch map) returns data in the original shape but 'proxified' — metadata with IDs on each nested object, which DomElementTemplate checks to inject non-displaying HTML content and the interactive UI elements that form the WYSIWYG system. Handling contract: pass the object to DomElementTemplate AS-IS when unmodified; when modifying it in code — adding properties, or even changing values — use safeClone (import { safeClone } from 'spyne'), which produces the updated object with proxy metadata intact. Property flow is one-way: code-added properties carry no proxy metadata and are invisible to the CMS (not editable, not persisted); only properties added via the CMS UI update the original ChannelFetch data source. Detection: proxified objects are identifiable via the __cms__isProxy flag (e.g. props.data.__cms__isProxy in a view, e.payload.__cms__isProxy on a channel emission) — the runtime check that tells code which mutation contract applies."
     },
     {
-      "path": "kb/cards/select-concurrency-operator.md",
+      "path": "grammar/cards/select-concurrency-operator.md",
       "kind": "card",
       "topic": "behavior",
       "description": "Choose the RxJS concurrency operator (switchMap/concatMap/exhaustMap/mergeMap) by the action's ordering semantics when a channel action triggers async work."
     },
     {
-      "path": "kb/cards/shape-data-for-logicless-template.md",
+      "path": "grammar/cards/shape-data-for-logicless-template.md",
       "kind": "card",
       "topic": "view",
       "description": "Templates carry no logic by design — no if/else, no computed expressions, no helpers, no inverted sections, no partials. All decisions and derivations are pre-computed in SpyneTrait methods; the template receives resolved data."
     },
     {
-      "path": "kb/cards/single-active-child.md",
+      "path": "grammar/cards/single-active-child.md",
       "kind": "card",
       "topic": "view",
       "description": "Route-tier (and analogous) swapping via the single-active-child pattern: the parent container instantiates the incoming child; the CHILD removes itself on the governing event (['CHANNEL_ROUTE_CHANGE_EVENT','disposeViewStream'] + skip-first). Parent never tracks or disposes outgoing children."
     },
     {
-      "path": "kb/cards/single-extension-only.md",
+      "path": "grammar/cards/single-extension-only.md",
       "kind": "card",
       "topic": "logic",
       "description": "A module extends one of six public base classes exactly once: ViewStream, Channel, SpyneTrait, DomElement, ChannelFetch, SpynePlugin."
     },
     {
-      "path": "kb/cards/skip-replayed-birth-event.md",
+      "path": "grammar/cards/skip-replayed-birth-event.md",
       "kind": "card",
       "topic": "behavior",
       "description": "When a view is spawned by a channel event and listens to that same replaying channel (e.g. for disposal), skip the first emission: [CHANNEL_NAME, true] in props.channels (sanctioned form; addChannel(name, true) exists but is undocumented — codegen never emits it). Otherwise the view acts on its own replayed birth event. CONDITION PRECISE: skip-first is required IFF the channel replays; non-replay channels' spawned children listen safely without it (spyne-3js CalloutViewItem: born on ANGLE_CHANGE, disposes on ANGLE_CHANGE, no skip — CHANNEL_THREEJS has no replay)."
     },
     {
-      "path": "kb/cards/slice-traits-by-concern.md",
+      "path": "grammar/cards/slice-traits-by-concern.md",
       "kind": "card",
       "topic": "logic",
       "description": "Partition logic into traits organized by what it does, not where it's used (FormTraits, AnimationTraits, AuthTraits), each namespaced by its prefix$ and composed in props. Trait methods are pure and stateless."
     },
     {
-      "path": "kb/cards/spyneappproperties-vs-channel-state.md",
+      "path": "grammar/cards/spyneappproperties-vs-channel-state.md",
       "kind": "card",
       "topic": "behavior",
       "description": "Placement judgment for a value — three homes, decided by tests in order. TEST 1 — OWNERSHIP/DURABILITY (the gate for view-local): if no other view or consumer needs the value AND it dies with the view, it is view-local (props / held state, computed by trait methods) — never a channel, never SpyneAppProperties; its externally meaningful RESULT still transmits through a channel. Either failure forces the value out of the view for a different reason: shared → it must be findable (view-internal state is invisible to outsiders); outlives the view → it must be held by a longer lifetime. TEST 2 — CHANGE (for values that survive test 1, i.e. shared or durable): if it changes and anything renders from it → Channel state. If it does not change within the app session (user name, email, config) → SpyneAppProperties setProp/getProp (isTemp=true = read-once-then-removed: one-shot handoffs and handshake tokens — see handshake-via-temp-prop). Static means not expected to change within the session: a live-editable profile field is changing state even if the field is 'user name'. DELIVERY-ENVELOPE EXCEPTION: when a legitimate consumer must read a changing value outside the channel's delivery envelope — too EARLY (a constructor-time gate, before any subscription can exist: 'am I signed in') or too OFTEN (a hot-path reader outpacing emission: a WebGL-style consumer reading a live DOM attribute per frame) — SpyneAppProperties is the sanctioned readable surface for that constrained consumer. Guardrails: exactly one writer; the channel remains the semantic authority — sync-read case: changes still announce through the channel so reactive consumers subscribe rather than poll; hot-path case: discrete meaningful transitions still announce (see discretize-continuous-input-at-source) while the continuous value rides SpyneAppProperties; and consumers that CAN subscribe still subscribe — the SpyneAppProperties read belongs to the constrained consumer only, never a general convenience alternative. CONSTANTS CLAUSE: constants live on SpyneAppProperties — never in scattered per-feature constants files. Findability by bounded surface area: one canonical home makes locating any constant intuitive; indiscriminate constants files make it forensic."
     },
     {
-      "path": "kb/cards/srcElement-over-event-target.md",
+      "path": "grammar/cards/srcElement-over-event-target.md",
       "kind": "card",
       "topic": "general",
       "description": "Read the ChannelPayload's srcElement (the framework's description of the event target: tagName, id, class) rather than walking event.target. ChannelPayloadFilter selectors match against srcElement."
     },
     {
-      "path": "kb/cards/state-machine-in-channel.md",
+      "path": "grammar/cards/state-machine-in-channel.md",
       "kind": "card",
       "topic": "behavior",
       "description": "Durable state and state machines live in Channel trait methods; the channel is the designed home for long-lived state."
     },
     {
-      "path": "kb/cards/time-emission-at-sync-point.md",
+      "path": "grammar/cards/time-emission-at-sync-point.md",
       "kind": "card",
       "topic": "record-composed",
       "description": "Place sendChannelPayload at the synchronization point that keeps the app coherent — a deliberate structural act inside a trait method."
     },
     {
-      "path": "kb/cards/transmit-into-channel.md",
+      "path": "grammar/cards/transmit-into-channel.md",
       "kind": "card",
       "topic": "behavior",
       "description": "Outbound communication from a view: sendInfoToChannel(channelName, payload, action?) from a ViewStream trait. The action parameter is OPTIONAL: with an action, a registered ['ACTION','method'] pair auto-invokes the paired channel method; an UNPAIRED action (registered as a plain string, no method) also routes to onViewStreamInfo, carrying its action; with the action omitted, the payload routes there too. Full routing: paired action → method; unpaired action → onViewStreamInfo; no action → onViewStreamInfo. The relay receiver (onViewStreamInfo cloning and re-emitting via sendChannelPayload) is the validate-and-rebroadcast pattern for channels whose transmits map 1:1 to emissions."
     },
     {
-      "path": "kb/cards/typed-reconciliation-outcome.md",
+      "path": "grammar/cards/typed-reconciliation-outcome.md",
       "kind": "card",
       "topic": "record-composed",
       "description": "Conform a reconciliation result into typed outcome labels/flags (confirm, rollback, supersede) rather than a success boolean."
     },
     {
-      "path": "kb/cards/use-framework-ui-action-labels.md",
+      "path": "grammar/cards/use-framework-ui-action-labels.md",
       "kind": "card",
       "topic": "record-composed",
       "description": "UI broadcasts arrive under framework-derived action labels — event 'click' emits CHANNEL_UI_CLICK_EVENT, 'input' emits CHANNEL_UI_INPUT_EVENT, per the documented UIEvents tables. Listeners narrow with these given labels plus ChannelPayloadFilter; label DESIGN applies to custom channels only."
     },
     {
-      "path": "kb/cards/window-event-via-channel.md",
+      "path": "grammar/cards/window-event-via-channel.md",
       "kind": "card",
       "topic": "behavior",
       "description": "Global browser events arrive as payloads on CHANNEL_WINDOW, configured at init (event list, debounce for scroll/resize/orientation, mediaQueries via matchMedia emitting CHANNEL_WINDOW_MEDIA_QUERY_EVENT with mediaQueryName)."
     },
     {
-      "path": "kb/cards/wire-in-onRegistered.md",
+      "path": "grammar/cards/wire-in-onRegistered.md",
       "kind": "card",
       "topic": "general",
       "description": "All of a Channel's cross-channel setup — getChannel subscriptions, mergeChannels, RxJS pipelines, trait-bound parsing — is authored in the onRegistered lifecycle hook: after registration and action setup, before any data flows."
     },
     {
-      "path": "kb/cards/wiring-surface-only-on-viewstream.md",
+      "path": "grammar/cards/wiring-surface-only-on-viewstream.md",
       "kind": "card",
       "topic": "general",
       "description": "Only broadcastEvents, addActionListeners, onRendered, and the constructor live on a ViewStream class. Everything else is a trait."
     },
     {
-      "path": "kb/records/app-scaffold.md",
+      "path": "grammar/records/app-scaffold.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"start a new SpyneJS app,\" \"set up the project\" — index.js, registrations, the shell, the folders."
     },
     {
-      "path": "kb/records/authenticated-fetch-flow.md",
+      "path": "grammar/records/authenticated-fetch-flow.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"API calls need the auth token,\" \"refresh the token when it expires,\" \"log out on 401.\""
     },
     {
-      "path": "kb/records/breadcrumb-from-navlinks.md",
+      "path": "grammar/records/breadcrumb-from-navlinks.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"add breadcrumbs,\" \"show where the user is in the hierarchy.\""
     },
     {
-      "path": "kb/records/combine-sources-into-domain-payload.md",
+      "path": "grammar/records/combine-sources-into-domain-payload.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"needs data from two places before it can show,\" \"merge these feeds into one thing.\""
     },
     {
-      "path": "kb/records/component-interaction-loop.md",
+      "path": "grammar/records/component-interaction-loop.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** any first component — \"make the button update the counter,\" \"wire this input to that list\" — the full view→channel→view loop in miniature."
     },
     {
-      "path": "kb/records/create-a-page.md",
+      "path": "grammar/records/create-a-page.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"add an About page,\" \"I need a new section/screen\" — a new routed destination with content."
     },
     {
-      "path": "kb/records/cross-app-postmessage-bridge.md",
+      "path": "grammar/records/cross-app-postmessage-bridge.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"talk to the iframe,\" \"two apps on the page share events,\" \"embed communicates with host.\""
     },
     {
-      "path": "kb/records/cross-view-selection-sync.md",
+      "path": "grammar/records/cross-view-selection-sync.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"selecting here should update there,\" \"two widgets that stay in sync,\" \"linked dropdowns.\""
     },
     {
-      "path": "kb/records/debounced-typeahead-search.md",
+      "path": "grammar/records/debounced-typeahead-search.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"search as you type,\" \"autocomplete,\" \"suggestions after a pause in typing.\""
     },
     {
-      "path": "kb/records/deferred-behavior-adoption.md",
+      "path": "grammar/records/deferred-behavior-adoption.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"hundreds of items, add interactivity when needed,\" \"enhance server-rendered HTML,\" \"progressive enhancement at scale.\""
     },
     {
-      "path": "kb/records/derived-activity-log.md",
+      "path": "grammar/records/derived-activity-log.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"an activity feed,\" \"audit trail,\" \"history panel built from what already happens.\""
     },
     {
-      "path": "kb/records/drag-reorder-with-persist.md",
+      "path": "grammar/records/drag-reorder-with-persist.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"drag to reorder,\" \"sortable list that remembers its order.\""
     },
     {
-      "path": "kb/records/external-library-as-behavior-source.md",
+      "path": "grammar/records/external-library-as-behavior-source.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"integrate Three.js / a map / a player / a socket\" — a library with its own events joining app behavior."
     },
     {
-      "path": "kb/records/form-validate-submit.md",
+      "path": "grammar/records/form-validate-submit.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"a contact/signup form,\" \"validate before submitting,\" \"show errors next to fields.\""
     },
     {
-      "path": "kb/records/gate-render-on-data.md",
+      "path": "grammar/records/gate-render-on-data.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"don't render until the data is ready,\" \"wait for both requests before showing.\""
     },
     {
-      "path": "kb/records/global-loading-indicator.md",
+      "path": "grammar/records/global-loading-indicator.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"a spinner/progress bar while anything is loading,\" \"the app-wide busy state.\""
     },
     {
-      "path": "kb/records/greenfield-app-from-model.md",
+      "path": "grammar/records/greenfield-app-from-model.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"build me a site/app with these pages\" — a whole application described as content and structure, not components."
     },
     {
-      "path": "kb/records/live-polling-updates.md",
+      "path": "grammar/records/live-polling-updates.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"refresh the data every N seconds,\" \"live scores/prices/status.\""
     },
     {
-      "path": "kb/records/login-and-protected-routes.md",
+      "path": "grammar/records/login-and-protected-routes.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"users log in,\" \"members-only pages,\" \"redirect to login when signed out.\""
     },
     {
-      "path": "kb/records/master-detail.md",
+      "path": "grammar/records/master-detail.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"click an item to see its details,\" \"list on the left, detail on the right,\" \"product page per item.\""
     },
     {
-      "path": "kb/records/modal-open-close.md",
+      "path": "grammar/records/modal-open-close.md",
       "kind": "record",
       "topic": "feature",
       "description": "Modal rendered as a disposed-by-default subtree, opened/closed via channel actions (and optionally route), with escape-key handling via CHANNEL_WINDOW."
     },
     {
-      "path": "kb/records/multi-step-wizard.md",
+      "path": "grammar/records/multi-step-wizard.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"a checkout/onboarding flow,\" \"step 1, step 2, step 3,\" \"back and next with state kept.\""
     },
     {
-      "path": "kb/records/optimistic-update-with-reconcile.md",
+      "path": "grammar/records/optimistic-update-with-reconcile.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"update the UI immediately, sync with the server after\" — likes, toggles, inline edits that can't wait for the round trip."
     },
     {
-      "path": "kb/records/paginated-or-infinite-list.md",
+      "path": "grammar/records/paginated-or-infinite-list.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"load more,\" \"page 2,\" \"infinite scroll,\" \"only fetch what's visible.\""
     },
     {
-      "path": "kb/records/persist-settings-via-storage-channel.md",
+      "path": "grammar/records/persist-settings-via-storage-channel.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"remember my settings,\" \"survive a refresh,\" \"save preferences locally.\""
     },
     {
-      "path": "kb/records/responsive-behavior-on-media-query.md",
+      "path": "grammar/records/responsive-behavior-on-media-query.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"behave differently on mobile,\" \"the drawer only below tablet width\" — behavior (not just CSS) changing with viewport."
     },
     {
-      "path": "kb/records/route-driven-page-swap.md",
+      "path": "grammar/records/route-driven-page-swap.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"clicking nav should switch the content,\" \"show a different page per URL.\""
     },
     {
-      "path": "kb/records/skeleton-then-content.md",
+      "path": "grammar/records/skeleton-then-content.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"show placeholders while loading,\" \"skeleton screens,\" \"no layout jump when data arrives.\""
     },
     {
-      "path": "kb/records/tab-switcher.md",
+      "path": "grammar/records/tab-switcher.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"tabs,\" \"switch panels without leaving the page.\""
     },
     {
-      "path": "kb/records/theme-or-mode-toggle.md",
+      "path": "grammar/records/theme-or-mode-toggle.md",
       "kind": "record",
       "topic": "feature",
       "description": "A theme/mode toggle is a replay state channel wearing a button. Assembly: a toggle view broadcasts its click (dataset carries the target mode or a bare toggle intent); a theme channel (replay: true) holds current mode as durable state, seeded in onRegistered from the storage channel so the persisted choice applies before first paint; on change it conforms, persists via the storage channel, and emits; consumers apply the mode via el$ (root data-theme attribute / class flip) — late subscribers receive current mode immediately via replay. The mode rides the DOM as an attribute, so CSS does the theming; views only flip the signature."
     },
     {
-      "path": "kb/records/toast-notification-system.md",
+      "path": "grammar/records/toast-notification-system.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"show a toast/snackbar,\" \"brief confirmations that dismiss themselves.\""
     },
     {
-      "path": "kb/records/undo-redo.md",
+      "path": "grammar/records/undo-redo.md",
       "kind": "record",
       "topic": "feature",
       "description": "**Recognize when:** \"undo/redo,\" \"time travel,\" \"jump back to an earlier move/state.\""

@@ -11,7 +11,7 @@ A content-only package (nothing compiles, nothing executes): 91 cards (the opera
 ## Who consumes it
 
 - **Application templates** ship it, so a fresh project starts with the current Grammar.
-- **Agents** read it — start at `AGENTS.md`, which routes into `kb/`.
+- **Agents** read it — start at `AGENTS.md`, which routes into `grammar/`.
 - **You** rarely open it directly; tooling and agents do.
 
 ## Install

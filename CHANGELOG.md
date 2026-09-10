@@ -4,6 +4,13 @@ All notable changes to the SpyneJS Knowledge Base package. Format follows [Keep 
 
 ## [Unreleased]
 
+## [0.3.0] — 2026-09-10
+
+- Rendered from knowledge-stack round v50-r11 (hash-pinned in `manifest.json`)
+- BREAKING (structure only): payload directory renamed kb/ → grammar/ (ruled 2026-09-10). manifest.json → entry and files[] paths follow; consumers that locate files through the manifest need no change. package.json exports keeps ./kb/* as an alias of ./grammar/* for one transition window
+- Content unchanged: same v50-r11 render as 0.2.x
+- Framework compatibility: spynejs >=0.25
+
 ## [0.2.1] — 2026-09-10
 
 - Rendered from knowledge-stack round v50-r11 (hash-pinned in `manifest.json`)
