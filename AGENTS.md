@@ -54,8 +54,8 @@ When you complete a task, state which record and cards you applied (by ID). If n
 
 ## Package navigation (this npm package)
 
-This is @spynejs/grammar, the SpyneJS Knowledge Base in package form. `manifest.json` at the package root is the machine-readable index: version, `frameworkCompat`, and every file with its topic. The knowledge itself lives under `kb/` at the paths referenced above.
+This is `@spynejs/grammar` — the SpyneJS Generative Grammar in package form. `manifest.json` at the package root is the machine-readable index: version, `frameworkCompat`, and every file with its topic. The Grammar itself lives under `kb/` at the paths referenced above; `manifest.json → entry` is the stable way to locate the trees, cards, records, and mental model.
 
 ## Version skew
 
-`manifest.json → frameworkCompat` states the framework range this knowledge describes. If the project's SpyneJS version falls outside it, say so — do not guess across the skew.
+`manifest.json → frameworkCompat` states the framework range this Grammar describes. If the project's SpyneJS version falls outside it, say so — do not guess across the skew.

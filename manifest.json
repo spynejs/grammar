@@ -1,6 +1,6 @@
 {
   "$schema-note": "Programmatic front door for @spynejs/grammar. Stable contract: spyne-cli and MCP consumers read this file. Fields never repurposed; additions only.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "frameworkCompat": {
     "spynejs": ">=0.25"
   },
@@ -26,7 +26,7 @@
       "path": "kb/00-agent-spec.md",
       "kind": "spec",
       "topic": "envelope",
-      "description": "Agent envelope: how to consume this knowledge (carries the stackVersion line)."
+      "description": "Agent envelope: how to consume the Grammar (carries the stackVersion line)."
     },
     {
       "path": "kb/01-mental-model.md",

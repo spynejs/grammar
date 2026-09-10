@@ -4,6 +4,13 @@ All notable changes to the SpyneJS Knowledge Base package. Format follows [Keep 
 
 ## [Unreleased]
 
+## [0.2.1] — 2026-09-10
+
+- Rendered from knowledge-stack round v50-r11 (hash-pinned in `manifest.json`)
+- Package wording: agents are pointed at the SpyneJS Grammar by its ratified name (the Grammar / the SpyneJS Grammar / Generative Grammar) — AGENTS.md package section, README, manifest envelope description
+- Content unchanged: same v50-r11 render as 0.2.0
+- Framework compatibility: spynejs >=0.25
+
 ## [0.2.0] — 2026-09-10
 
 - Rendered from knowledge-stack round v50-r11 (hash-pinned in `manifest.json`)
