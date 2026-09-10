@@ -4,6 +4,13 @@ All notable changes to the SpyneJS Knowledge Base package. Format follows [Keep 
 
 ## [Unreleased]
 
+## [0.3.1] — 2026-09-10
+
+- Rendered from knowledge-stack round v50-r11 (hash-pinned in `manifest.json`)
+- exports: the ./kb/* alias added in 0.3.0 is removed — @spynejs/kb is deprecated on npm and the old subpath had no consumers; import @spynejs/grammar/grammar/*
+- Content unchanged: same v50-r11 render
+- Framework compatibility: spynejs >=0.25
+
 ## [0.3.0] — 2026-09-10
 
 - Rendered from knowledge-stack round v50-r11 (hash-pinned in `manifest.json`)

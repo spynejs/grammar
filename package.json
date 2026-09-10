@@ -1,6 +1,6 @@
 {
   "name": "@spynejs/grammar",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "The SpyneJS Generative Grammar — what AI agents read to write well-formed SpyneJS. Content-only package: cards (the operations), records (the constructions), the mental model, and the trees that route any task to them; versioned with framework releases.",
   "license": "MIT",
   "author": "Relevant Context, Inc.",
@@ -16,8 +16,7 @@
   "exports": {
     ".": "./manifest.json",
     "./manifest.json": "./manifest.json",
-    "./grammar/*": "./grammar/*",
-    "./kb/*": "./grammar/*"
+    "./grammar/*": "./grammar/*"
   },
   "scripts": {
     "verify:pack": "npm pack --dry-run"

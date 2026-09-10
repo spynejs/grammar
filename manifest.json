@@ -1,6 +1,6 @@
 {
   "$schema-note": "Programmatic front door for @spynejs/grammar. Stable contract: spyne-cli and MCP consumers read this file. Fields never repurposed; additions only.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "frameworkCompat": {
     "spynejs": ">=0.25"
   },
