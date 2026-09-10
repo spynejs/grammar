@@ -25,4 +25,5 @@ export class PageView extends ViewStream {
 
 **Caveats:**
 - SMELL CHECK (Acme): if skip-first appears to fix an ordering problem, first ask whether the ordering problem is self-inflicted (a pattern applied at the wrong tier) — a fix for a self-inflicted wound reads exactly like a fix for a real one.
+- The tuple's boolean is skip-first, NOT a replay opt-in: a view whose purpose is to RECEIVE a replay channel's cached payload (a container spawned by a different flow, consuming the init event) must subscribe PLAIN — giving it the tuple starves it silently, 0 children and no warning. The word collision with channel-side `props.replay` is the trap to name explicitly.
 

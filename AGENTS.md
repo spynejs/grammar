@@ -1,5 +1,5 @@
 # AGENTS.md — SpyneJS Development
-stackVersion: v50-r10 — assert this against the version you were told to use before generating.
+stackVersion: v50-r11 — assert this against the version you were told to use before generating.
 
 You are working in a SpyneJS codebase. SpyneJS is a browser-platform-first frontend framework — do not translate React/Vue/Angular idioms into it. Your training priors about frontend frameworks are raw material that the knowledge in this repo corrects.
 
@@ -52,7 +52,6 @@ For the full mental model (what kind of thing everything is), read `kb/01-mental
 
 When you complete a task, state which record and cards you applied (by ID). If none fit, say NO-FIT and what you did instead — that report is wanted.
 
-
 ## Package navigation (this npm package)
 
 This is @spynejs/grammar, the SpyneJS Knowledge Base in package form. `manifest.json` at the package root is the machine-readable index: version, `frameworkCompat`, and every file with its topic. The knowledge itself lives under `kb/` at the paths referenced above.
@@ -60,5 +59,3 @@ This is @spynejs/grammar, the SpyneJS Knowledge Base in package form. `manifest.
 ## Version skew
 
 `manifest.json → frameworkCompat` states the framework range this knowledge describes. If the project's SpyneJS version falls outside it, say so — do not guess across the skew.
-
-<!-- PENDING (gap-log, Bootstrap thread): the data-is-custom-event="true" declaration rule — verified absent from the kit render 2026-08-11; exact rule text to be supplied before this comment is replaced. -->

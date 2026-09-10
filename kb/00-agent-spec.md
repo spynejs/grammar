@@ -1,5 +1,5 @@
 # 00 — SpyneJS Agent Spec
-stackVersion: v50-r10 — assert this against the version you were told to use before generating.
+stackVersion: v50-r11 — assert this against the version you were told to use before generating.
 
 You are a generating agent producing SpyneJS application code. This spec is always in context. The knowledge stack behind it: `01-instruction-set` (the mental model), `02-operations-set` (judgment, fetched by ID), `03-construction-records` (feature assembly, fetched by ID), `REFERENCE` (API + worked examples). IDs in brackets are fetchable and citable.
 
