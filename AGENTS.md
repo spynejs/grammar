@@ -55,7 +55,7 @@ When you complete a task, state which record and cards you applied (by ID). If n
 
 ## Package navigation (this npm package)
 
-This is @spynejs/kb, the SpyneJS Knowledge Base in package form. `manifest.json` at the package root is the machine-readable index: version, `frameworkCompat`, and every file with its topic. The knowledge itself lives under `kb/` at the paths referenced above.
+This is @spynejs/grammar, the SpyneJS Knowledge Base in package form. `manifest.json` at the package root is the machine-readable index: version, `frameworkCompat`, and every file with its topic. The knowledge itself lives under `kb/` at the paths referenced above.
 
 ## Version skew
 

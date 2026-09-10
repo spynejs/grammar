@@ -1,6 +1,8 @@
-# @spynejs/kb
+# SpyneJS Generative Grammar
 
-The SpyneJS Knowledge Base, in package form — the served knowledge layer that AI agents read when building SpyneJS applications.
+> This package began as the SpyneJS Knowledge Base Kit (`@spynejs/kb`). It started as a set of rules for agents — and somewhere along the way we realized we had written a grammar. Same artifact, same version lineage, its proper name.
+
+The SpyneJS Generative Grammar, in package form — the served knowledge layer that AI agents read when building SpyneJS applications.
 
 ## What this is
 
@@ -15,7 +17,7 @@ A content-only package (nothing compiles, nothing executes): 91 operation cards,
 ## Install
 
 ```bash
-npm install @spynejs/kb
+npm install @spynejs/grammar
 ```
 
 ## Currency
