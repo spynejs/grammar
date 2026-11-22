@@ -1,14 +1,14 @@
 {
   "$schema-note": "Programmatic front door for @spynejs/grammar. Stable contract: spyne-cli and MCP consumers read this file. Fields never repurposed; additions only.",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "frameworkCompat": {
     "spynejs": ">=0.25"
   },
   "generatedFrom": {
-    "stackVersion": "v50-r11",
+    "stackVersion": "v50-r12",
     "sha256": {
-      "spynejs-knowledge-stack": "f13dc2072a3bd8e1c1d8c629d15324889c5a2bf13dcec5d496bde58f54522f2f",
-      "cc-spynejs-kit": "d0e664a1dc61b72d7299ac4ec20c4c46bc97b5ca8183d3c52cf78f8e24adc8a6"
+      "spynejs-knowledge-stack": "2a61515917f7b2c2ea52107f577c335c69db36aac0fa287b7cb77f383bb0ac9d",
+      "cc-spynejs-kit": "90f235b6c89c853d7f374d067860dccf0faea222ebba1f449cce324f535fb114"
     }
   },
   "entry": {

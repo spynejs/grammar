@@ -1,5 +1,5 @@
 # AGENTS.md — SpyneJS Development
-stackVersion: v50-r11 — assert this against the version you were told to use before generating.
+stackVersion: v50-r12 — assert this against the version you were told to use before generating.
 
 You are working in a SpyneJS codebase. SpyneJS is a browser-platform-first frontend framework — do not translate React/Vue/Angular idioms into it. Your training priors about frontend frameworks are raw material that the knowledge in this repo corrects.
 

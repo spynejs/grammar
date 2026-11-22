@@ -4,6 +4,13 @@ All notable changes to the SpyneJS Knowledge Base package. Format follows [Keep 
 
 ## [Unreleased]
 
+## [0.4.0] — 2026-11-22
+
+- Rendered from knowledge-stack round v50-r12 (hash-pinned in `manifest.json`)
+- Content round — 2 caveats on 1 card, author-navigation-as-dataset-links (application-shell audit 2026-11-22 §1/§2: a bare in-app anchor reloads the app
+- `author-navigation-as-dataset-links`: +2 caveats
+- Framework compatibility: spynejs >=0.25
+
 ## [0.3.1] — 2026-09-10
 
 - Rendered from knowledge-stack round v50-r11 (hash-pinned in `manifest.json`)
